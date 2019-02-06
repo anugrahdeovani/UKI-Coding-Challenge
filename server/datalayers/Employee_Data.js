@@ -40,7 +40,7 @@ const dtl = {
 
   updateEmployee: (callback, id, data) => {
     db.collection("employee").updateOne(
-      { id: id },
+      { _id: new ObjectID(id) },
       { $set: data },
       (err, docs) => {
         if (err) {
@@ -53,7 +53,7 @@ const dtl = {
   },
 
   deleteEmployee: (callback, id) => {
-    db.collection("employee").deleteOne({ id: id }),
+    db.collection("employee").deleteOne({ _id: new ObjectID(id) }),
       (err, docs) => {
         if (err) {
           callback(err);
