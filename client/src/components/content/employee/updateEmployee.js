@@ -7,6 +7,7 @@ import {
   updateEmployee,
   deleteEmployee
 } from "../../../actions/employeeAction";
+import { Link } from "react-router-dom";
 
 class UpdateEmployee extends React.Component {
   constructor(props) {
@@ -79,9 +80,7 @@ class UpdateEmployee extends React.Component {
         <div className="row">
           <div className="col-md-3">
             <h2 className="mt-2">Edit Employee</h2>
-            <li className="mb-3">
-              <a href="/employees">Back</a>
-            </li>
+            <Link to={`/employees`}>Back</Link>
             <div className="form-col">
               <label>Employee ID</label>
               <div>

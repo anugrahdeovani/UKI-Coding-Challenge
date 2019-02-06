@@ -21,7 +21,6 @@ import {
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@material-ui/icons";
 import FirstPageIcon from "@material-ui/icons/FirstPage";
 import LastPageIcon from "@material-ui/icons/LastPage";
-import SearchIcon from "@material-ui/icons/Search";
 
 const actionsStyles = theme => ({
   root: {
@@ -136,17 +135,11 @@ class ListEmployee extends React.Component {
         code: ""
       }
     };
-    this.createHandler = this.createHandler.bind(this);
     this.editHandler = this.editHandler.bind(this);
-  }
-
-  createHandler() {
-    window.location.href = "/add-employee";
   }
 
   editHandler(employeeData) {
     localStorage.setItem("EMPLOYEE-DATA", JSON.stringify(employeeData));
-    window.location.href = "/edit-employee";
   }
 
   handleChangePage = (event, page) => {
@@ -165,12 +158,9 @@ class ListEmployee extends React.Component {
             <Grid item xs={12}>
               <h2 className="mt-2 mb-3">Employee List</h2>
             </Grid>
-            <button
-              className="mb-3 btn btn-primary"
-              onClick={this.createHandler}
-            >
-              +New Employee
-            </button>
+            <Link to={`/employees/add-employee`}>
+              <button className="mb-3 btn btn-primary">+New Employee</button>
+            </Link>
             <Grid item xs={12}>
               <Hidden>
                 <Paper>
@@ -199,12 +189,11 @@ class ListEmployee extends React.Component {
                               <TableCell>{employee.name}</TableCell>
                               <TableCell>{employee.department}</TableCell>
                               <TableCell>
-                                <Link to="#">
-                                  <SearchIcon
-                                    onClick={() => {
-                                      this.editHandler(employee);
-                                    }}
-                                  />
+                                <Link
+                                  to={`/employees/${employee.id}`}
+                                  onClick={this.editHandler}
+                                >
+                                  [Edit]
                                 </Link>
                               </TableCell>
                             </TableRow>

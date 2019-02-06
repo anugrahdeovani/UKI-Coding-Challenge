@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import { connect } from "react-redux";
 import { createEmployee } from "../../../actions/employeeAction";
+import { Link } from "react-router-dom";
 
 class CreateEmployee extends React.Component {
   constructor(props) {
@@ -51,9 +52,7 @@ class CreateEmployee extends React.Component {
         <div className="row">
           <div className="col-md-3">
             <h2 className="mt-2">Add Employee</h2>
-            <li className="mb-3">
-              <a href="/employees">Back</a>
-            </li>
+            <Link to={`/employees`}>Back</Link>
             <div className="form-col">
               <label>Employee ID</label>
               <div>
@@ -95,12 +94,9 @@ class CreateEmployee extends React.Component {
                 >
                   Save
                 </button>
-                <button
-                  className="btn btn-warning"
-                  onClick={() => (window.location.href = "/employees")}
-                >
-                  Cancel
-                </button>
+                <Link to="employees">
+                  <button className="btn btn-warning">Cancel</button>
+                </Link>
               </div>
             </div>
           </div>
