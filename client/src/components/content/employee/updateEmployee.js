@@ -53,6 +53,7 @@ class UpdateEmployee extends React.Component {
 
   submitHandler() {
     const formdata = {
+      _id: this.state.formdata._id,
       currentID: this.state.currentID,
       id: this.state.formdata.id,
       name: this.state.formdata.name,
@@ -61,17 +62,17 @@ class UpdateEmployee extends React.Component {
     this.props.updateEmployee(formdata);
     setTimeout(() => {
       window.location.href = "/employees";
-    }, 2000);
+    }, 1000);
   }
 
   deleteHandler() {
     const formdata = {
-      currentID: this.state.currentID
+      currentID: this.state.formdata._id
     };
     this.props.deleteEmployee(formdata);
     setTimeout(() => {
       window.location.href = "/employees";
-    }, 2000);
+    }, 1000);
   }
 
   render() {

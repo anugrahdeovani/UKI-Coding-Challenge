@@ -126,7 +126,7 @@ class ListEmployee extends React.Component {
     this.state = {
       search: "",
       result: [],
-      employees: [],
+      employees: [null],
       page: 0,
       rowsPerPage: 5,
       alertData: {
@@ -140,6 +140,7 @@ class ListEmployee extends React.Component {
 
   editHandler(employeeData) {
     localStorage.setItem("EMPLOYEE-DATA", JSON.stringify(employeeData));
+    window.location.href = "/employees/" + employeeData.id;
   }
 
   handleChangePage = (event, page) => {
@@ -174,36 +175,42 @@ class ListEmployee extends React.Component {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {this.state.employees
-                        .slice(
-                          this.state.page * this.state.rowsPerPage,
-                          this.state.page * this.state.rowsPerPage +
-                            this.state.rowsPerPage
-                        )
-                        .map((employee, index) => {
-                          return (
-                            <TableRow key={employee._id}>
-                              <TableCell component="th" scope="row">
-                                {employee.id}
-                              </TableCell>
-                              <TableCell>{employee.name}</TableCell>
-                              <TableCell>{employee.department}</TableCell>
-                              <TableCell>
-                                <Link
-                                  to={`/employees/${employee.id}`}
-                                  onClick={this.editHandler}
-                                >
-                                  [Edit]
-                                </Link>
-                              </TableCell>
-                            </TableRow>
-                          );
-                        })}
+                      {this.state.employees[0] === null ? (
+                        <TableCell>Loading..</TableCell>
+                      ) : this.state.employees.length === 0 ? (
+                        <TableCell>No Data Found</TableCell>
+                      ) : (
+                        this.state.employees
+                          .slice(
+                            this.state.page * this.state.rowsPerPage,
+                            this.state.page * this.state.rowsPerPage +
+                              this.state.rowsPerPage
+                          )
+                          .map((employee, index) => {
+                            return (
+                              <TableRow key={index}>
+                                <TableCell component="th" scope="row">
+                                  {employee.id}
+                                </TableCell>
+                                <TableCell>{employee.name}</TableCell>
+                                <TableCell>{employee.department}</TableCell>
+                                <TableCell>
+                                  <Link
+                                    to=""
+                                    onClick={() => this.editHandler(employee)}
+                                  >
+                                    [Edit]
+                                  </Link>
+                                </TableCell>
+                              </TableRow>
+                            );
+                          })
+                      )}
                     </TableBody>
                     <TableFooter>
                       <TableRow>
                         <TablePagination
-                          colSpan={3}
+                          colSpan={4}
                           count={this.state.employees.length}
                           rowsPerPage={this.state.rowsPerPage}
                           page={this.state.page}

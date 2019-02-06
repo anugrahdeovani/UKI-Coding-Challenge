@@ -69,7 +69,7 @@ export const updateEmployee = updatedEmployeeData => dispatch => {
       Apiconfig.BASE_URL +
       Apiconfig.ENDPOINTS.EMPLOYEE +
       "/" +
-      updatedEmployeeData.currentID,
+      updatedEmployeeData._id,
     method: "put",
     data: updatedEmployeeData
   };
@@ -78,7 +78,7 @@ export const updateEmployee = updatedEmployeeData => dispatch => {
       dispatch({
         type: "UPDATE_EMPLOYEE",
         payload: updatedEmployeeData,
-        status: res.data.id
+        status: res.data.status
       });
     })
     .catch(error => {
