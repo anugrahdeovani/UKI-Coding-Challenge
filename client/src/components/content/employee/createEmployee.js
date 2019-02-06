@@ -39,10 +39,7 @@ class CreateEmployee extends React.Component {
       name: this.state.name,
       department: this.state.department
     };
-    this.props.createEmployee(formdata);
-    setTimeout(() => {
-      window.location.href = "/employees";
-    }, 1000);
+    this.props.createEmployee(formdata, this.props.history);
   }
 
   render() {

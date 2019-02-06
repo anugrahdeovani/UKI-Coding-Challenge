@@ -59,20 +59,17 @@ class UpdateEmployee extends React.Component {
       name: this.state.formdata.name,
       department: this.state.formdata.department
     };
-    this.props.updateEmployee(formdata);
-    setTimeout(() => {
-      window.location.href = "/employees";
-    }, 1000);
+    this.props.updateEmployee(formdata, this.props.history);
   }
 
   deleteHandler() {
     const formdata = {
       currentID: this.state.formdata._id
     };
-    this.props.deleteEmployee(formdata);
+    this.props.deleteEmployee(formdata, this.props.history);
     setTimeout(() => {
-      window.location.href = "/employees";
-    }, 1000);
+      this.props.history.push("/employees");
+    }, 2000);
   }
 
   render() {
@@ -92,7 +89,6 @@ class UpdateEmployee extends React.Component {
                   name="id"
                   value={this.state.formdata.id}
                   onChange={this.changeHandler}
-                  disabled
                 />
               </div>
               <label className="mt-2">Employee Name</label>

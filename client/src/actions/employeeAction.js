@@ -41,7 +41,7 @@ export const getEmployeeByID = employeeID => dispatch => {
     });
 };
 
-export const createEmployee = newEployeeData => dispatch => {
+export const createEmployee = (newEployeeData, history) => dispatch => {
   let option = {
     url: Apiconfig.BASE_URL + Apiconfig.ENDPOINTS.EMPLOYEE,
     method: "post",
@@ -54,6 +54,7 @@ export const createEmployee = newEployeeData => dispatch => {
         payload: newEployeeData,
         status: res.data.code
       });
+      history.push("/employees");
     })
     .catch(error => {
       dispatch({
@@ -63,7 +64,7 @@ export const createEmployee = newEployeeData => dispatch => {
     });
 };
 
-export const updateEmployee = updatedEmployeeData => dispatch => {
+export const updateEmployee = (updatedEmployeeData, history) => dispatch => {
   let options = {
     url:
       Apiconfig.BASE_URL +
@@ -80,6 +81,7 @@ export const updateEmployee = updatedEmployeeData => dispatch => {
         payload: updatedEmployeeData,
         status: res.data.status
       });
+      history.push("/employees");
     })
     .catch(error => {
       dispatch({
@@ -89,7 +91,7 @@ export const updateEmployee = updatedEmployeeData => dispatch => {
     });
 };
 
-export const deleteEmployee = deletedEmployeeData => dispatch => {
+export const deleteEmployee = (deletedEmployeeData, history) => dispatch => {
   let options = {
     url:
       Apiconfig.BASE_URL +
@@ -105,6 +107,7 @@ export const deleteEmployee = deletedEmployeeData => dispatch => {
         payload: res.data.message,
         status: res.data.status
       });
+      history.push("/employees");
     })
     .catch(error => {
       dispatch({
