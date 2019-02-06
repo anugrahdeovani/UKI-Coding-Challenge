@@ -44,7 +44,6 @@ const Employee_Logic = {
 
   deleteEmployee: (req, res, next) => {
     const employeeID = req.params.id;
-    console.log(employeeID);
     dtl.deleteEmployee(function(items) {
       ResponseHelper.sendResponse(res, 200, items);
     }, employeeID);
